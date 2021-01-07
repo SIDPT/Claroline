@@ -215,6 +215,12 @@ services:
         tags:
             - { name: 'console.command', command: 'claroline:user:clean_group' }
 
+    Claroline\CoreBundle\Command\User\MakeResetPasswordURLCommand:
+        arguments:
+            - '@Claroline\CoreBundle\Manager\UserManager'
+            - '@router'
+        tags:
+            - { name: 'console.command', command: 'claroline:user:password-reset-url' }
     # Workspace
 
     Claroline\CoreBundle\Command\Workspace\ArchiveCommand:
