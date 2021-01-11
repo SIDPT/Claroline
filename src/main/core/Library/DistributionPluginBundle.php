@@ -16,11 +16,23 @@ namespace Claroline\CoreBundle\Library;
  */
 abstract class DistributionPluginBundle extends PluginBundle
 {
+
     public function getVersion(): string
     {
-        $data = file_get_contents(realpath($this->getPath().'/../../VERSION.txt'));
-        $dataParts = explode("\n", $data);
-
+    	// go up from src/plugin/pname
+    	$versionFromPlugin = realpath($this->getPath().'/../../../VERSION.txt');
+    	// assuming an external plugin bundle sources are under /plugin/name/ folder, 
+    	// following current webpack in-vendor search for modules
+    	// go up from vendor/vname/package/plugin/pname
+    	$versionFromVendor = realpath($this->getPath().'/../../../../../VERSION.txt');
+    	$data = "unknown";
+    	if($versionFromPlugin){
+    		$data = file_get_contents($versionFromPlugin);
+    	} else if($versionFromVendor) {
+    		$data = file_get_contents($versionFromVendor);
+    	}
+    	$dataParts = explode("\n", $data); 
         return trim($dataParts[0]);
+        
     }
 }

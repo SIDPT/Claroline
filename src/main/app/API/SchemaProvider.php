@@ -126,31 +126,52 @@ class SchemaProvider
     public function getSchema($class, array $options = [])
     {
         $serializer = $this->get($class);
+        $schema = null;
 
         if (method_exists($serializer, 'getSchema')) {
             $url = $serializer->getSchema();
             $path = explode('/', $url);
-            array_shift($path); //that one is for the #, we have no implementation for plugins yet
-            $first = array_shift($path);
-            $sec = array_shift($path);
 
-            $absolutePath = $this->projectDir.'/src/'
-            .$first.'/'.$sec.'/Resources/schemas/'.implode('/', $path);
+            // following webpack uri mappings  : 
+            // # for distribution modules (see webpack/plugins/distribution-shortcut.js) 
+            // ~ for costom vendor modules (see webpack/plugins/vendor-shortcut.js)
+            $prefix = array_shift($path); 
+            
+            if("#" === $prefix){ // for schemas in the distribution folder (now src in claroline repo)
+                $bundleType = array_shift($path); // main, integration or plugin
+                $bundleRootFolder = array_shift($path); // bundle root folder name
 
-            $schema = $this->loadSchema($absolutePath);
+                $schema = $this->loadSchema(
+                        $this->projectDir.'/src/'
+                            .$bundleType.'/'.$bundleRootFolder.'/Resources/schemas/'.implode('/', $path)
+                    );
+                
+            } else if ("~" === $prefix){
+                $vendorName = array_shift($path); // name of the vendor as declared in composer
+                $bundleName = array_shift($path); // name of the bundle as declared in composer
 
-            if (in_array(Options::IGNORE_COLLECTIONS, $options) && isset($schema->properties)) {
+                $bundleType = array_shift($path); // main, integration or plugin
+                $bundleRootFolder = array_shift($path); // bundle root folder name
+
+                $schema = $this->loadSchema(
+                        $this->projectDir.'/vendor/'
+                            .$vendorName.'/'.$bundleName.'/'.$bundleType.'/'.$bundleRootFolder.'/Resources/schemas/'.implode('/', $path)
+                    );
+            }
+
+            if($schema && 
+                    in_array(Options::IGNORE_COLLECTIONS, $options) && 
+                    isset($schema->properties)) {
                 foreach ($schema->properties as $key => $property) {
                     if ('array' === $property->type) {
                         unset($schema->properties->{$key});
                     }
                 }
             }
-
-            return $schema;
+            
         }
 
-        return null;
+        return $schema;
     }
 
     /**
