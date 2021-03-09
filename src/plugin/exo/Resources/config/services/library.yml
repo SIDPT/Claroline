@@ -123,6 +123,17 @@ services:
          alias: UJM\ExoBundle\Library\Item\Definition\ContentItemDefinition
          public: true
 
+    UJM\ExoBundle\Library\Item\Definition\CodeDefinition:
+        tags: [ujm_exo.definition.item]
+        arguments:
+           - '@UJM\ExoBundle\Validator\JsonSchema\Item\Type\CodeQuestionValidator'
+           - '@UJM\ExoBundle\Validator\JsonSchema\Attempt\AnswerData\CodeAnswerValidator'
+           - '@ujm_exo.serializer.question_code'
+
+    ujm_exo.definition.question_code:
+         alias: UJM\ExoBundle\Library\Item\Definition\CodeDefinition
+         public: true
+
     UJM\ExoBundle\Library\Item\Definition\ClozeDefinition:
         tags: [ujm_exo.definition.item]
         arguments:

@@ -163,6 +163,13 @@ services:
          alias: UJM\ExoBundle\Serializer\Item\Type\ContentItemSerializer
          public: true
 
+    UJM\ExoBundle\Serializer\Item\Type\CodeQuestionSerializer:
+        tags: [claroline.serializer]
+
+    ujm_exo.serializer.question_code:
+         alias: UJM\ExoBundle\Serializer\Item\Type\CodeQuestionSerializer
+         public: true
+
     UJM\ExoBundle\Serializer\Item\Type\ClozeQuestionSerializer:
         tags: [claroline.serializer]
         arguments:

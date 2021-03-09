@@ -22,6 +22,13 @@ final class ItemType
     const CLOZE = 'application/x.cloze+json';
 
     /**
+     * The user has to fill code files.
+     *
+     * @var string
+     */
+    const CODE = 'application/x.code+json';
+
+    /**
      * The user has to find element(s) on an image.
      *
      * @var string
@@ -109,6 +116,7 @@ final class ItemType
         return [
             static::CHOICE,
             static::CLOZE,
+            static::CODE,
             static::GRAPHIC,
             static::MATCH,
             static::PAIR,
