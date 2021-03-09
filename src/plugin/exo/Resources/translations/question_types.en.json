@@ -3,6 +3,8 @@
     "choice_desc": "Choose one or many answers (e.g. text, image, audio, video) in a predefined list of choices.",
     "cloze": "Cloze",
     "cloze_desc": "Fill gaps with relevant items in the context. It's possible to fill it either by writing in a text box or by choosing the item in a predefined list.",
+    "code": "Code",
+    "code_desc": "Answer a question with code files within a virtual file tree.",
     "graphic": "Graphic",
     "graphic_desc": "Point one or many areas on an image.",
     "match": "Association",

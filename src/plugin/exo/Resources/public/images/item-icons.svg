@@ -109,6 +109,18 @@
             </g>
         </symbol>
 
+        <symbol viewBox="0 0 32 32" id="icon-quiz-code">
+            <g stroke-linecap="square" stroke-width="2">
+                <rect height="2" width="10" x="1" y="25"/>
+                <rect height="2" width="14" x="1" y="15"/>
+                <rect height="2" width="18" x="1" y="5"/>
+            </g>
+            <g transform="matrix(.38319446 -.92366769 .92366769 .38319446 -10.538078 22.089682)">
+                <rect height="4.502048" stroke-linecap="square" stroke-width="1.99999988" transform="matrix(.9999992 .0012663 -.00085628157 .99999963 0 0)" width="1.9626539" x="29.101677" y="26.497034"/>
+                <path d="m25.853553 31.521242v-5.441942l-17.0662908.0221-5.9887379 2.676774 5.5909903 2.720971z" fill-rule="evenodd"/>
+            </g>
+        </symbol>
+
         <symbol viewBox="0 0 32 32" id="icon-quiz-ordering">
             <g>
                 <g stroke-linecap="square">

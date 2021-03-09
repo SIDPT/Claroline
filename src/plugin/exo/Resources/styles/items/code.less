@@ -1,0 +1,166 @@
+.code-tree { //  FROM ARIA tree
+  ul[role="tree"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul[role="tree"] li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul[role="tree"] a {
+    text-decoration: underline;
+    border-color: transparent;
+  }
+
+  [role="treeitem"] ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 0.9em;
+  }
+
+  [role="treeitem"][aria-expanded="false"] > ul {
+    display: none;
+  }
+
+  [role="treeitem"][aria-expanded="true"] > ul {
+    display: block;
+  }
+
+  [role="treeitem"][aria-expanded="false"] > span::before {
+    content: '\25B6';
+    position: relative;
+    left: -0.25em;
+  }
+
+  [role="treeitem"][aria-expanded="true"] > span::before {
+    content: '\25BC';
+    position: relative;
+    left: -0.25em;
+  }
+
+  [role="treeitem"],
+  [role="treeitem"] span {
+    width: 16em;
+    margin: 0;
+    padding: 0.125em;
+    border: 2px transparent solid;
+    display: block;
+  }
+
+  /* disable default keyboard focus styling for treeitems
+     Keyboard focus is styled with the following CSS */
+  [role="treeitem"]:focus {
+    outline: 0;
+  }
+
+  [role="treeitem"].focus,
+  [role="treeitem"] span.focus {
+    border-color: black;
+    background-color: #eee;
+  }
+
+  [role="treeitem"].hover,
+  [role="treeitem"] span.hover {
+    background-color: #ddd;
+  }
+}
+
+.code-editor {
+  position: relative; // contain hole popovers
+
+  .code-hole {
+    .form-control {
+      cursor: pointer; // don't know why it's not done by default
+      border-radius: @answer-item-border-radius 0 0 @answer-item-border-radius;
+    }
+
+    .btn-link,
+    .btn {
+      padding: 4px;
+    }
+  }
+}
+
+.code-editor,
+.code-paper {
+  .code-hole {
+    padding: 0; // We need to adjust how answers are rendered
+
+    .answer-warning-span {
+      margin-right: floor(@grid-gutter-width / 2);
+    }
+
+    // restyle input
+    .form-control {
+      //margin-right: floor(@grid-gutter-width / 2);
+      border: none;
+      border-radius: 0;
+    }
+
+    // contextual styles
+    &.correct-answer .form-control {
+      color: @correct-answer-color;
+      background: @correct-answer-bg;
+    }
+    &.incorrect-answer .form-control {
+      color: @incorrect-answer-color;
+      background: @incorrect-answer-bg;
+    }
+    &.selected-answer .form-control {
+      color: @selected-answer-color;
+      background: @selected-answer-bg;
+    }
+  }
+}
+
+.code-paper {
+  .code-hole {
+    padding: 0 @answer-item-padding; // We need to adjust how answers are rendered
+
+    .form-control + .btn-feedback,
+    .form-control + .solution-score {
+      margin-left: floor(@grid-gutter-width / 2);
+    }
+  }
+}
+
+.code-text {
+  .text-editor {
+    line-height: @input-height-small + 2px; // same as hole for better centering (2px for the hole borders)
+  }
+}
+
+.code-hole {
+  line-height: @input-height-small;
+  display: inline-flex;
+  align-items: center;
+  margin: 2px 0; // to prevent the holes from touching
+
+  .form-control {
+    width: auto; // remove bootstrap default 100%
+    max-width: 200px;
+  }
+}
+
+.code-stats {
+  .unanswered-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .answer-item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .answer-stats-table {
+    border: solid 1px @answer-item-bg;
+    padding: 0 @answer-item-padding;
+    border-radius: @answer-item-border-radius;
+  }
+}

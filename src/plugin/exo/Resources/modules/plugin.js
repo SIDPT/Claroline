@@ -20,6 +20,7 @@ registry.add('UJMExoBundle', {
     // questions
     'choice'   : () => { return import(/* webpackChunkName: "quiz-item-choice" */    '#/plugin/exo/items/choice') },
     'cloze'    : () => { return import(/* webpackChunkName: "quiz-item-cloze" */     '#/plugin/exo/items/cloze') },
+    'code'     : () => { return import(/* webpackChunkName: "quiz-item-code" */      '#/plugin/exo/items/code') },
     'graphic'  : () => { return import(/* webpackChunkName: "quiz-item-graphic" */   '#/plugin/exo/items/graphic') },
     'grid'     : () => { return import(/* webpackChunkName: "quiz-item-grid" */      '#/plugin/exo/items/grid') },
     'match'    : () => { return import(/* webpackChunkName: "quiz-item-match" */     '#/plugin/exo/items/match') },
